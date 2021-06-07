@@ -44,6 +44,8 @@ def to_usd(my_price):
 #1)capture product ids until we're done
 #use infinite loop (while loop)
 
+total_price = 0
+
 selected_ids = []
 while True:
     selected_id = input("Please select / scan a valid product id 1-20 or select DONE: ")
@@ -84,9 +86,23 @@ for selected_id in selected_ids:
     # or maybe display the selected product's name and price
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
+    total_price = total_price + matching_product["price"]
     print("*", matching_product["name"], to_usd(matching_product["price"]))
 
 #print subtotal
-#print tax owed
+
+print("Subtotal: " + str(total_price))
+
+#print tax owed (append to subtotal *.0875)
+
+
+#tax_owed = []
+#for n in subtotal:
+ # tax_owed.append(n * 0.0875)
+
 #print total amount
-#friendly message thanking customer
+
+print("\n")
+print("*************************")
+print("Returns are accepted within 14 days with receipt.")
+print("Thank you for shopping at West Side Market!")
