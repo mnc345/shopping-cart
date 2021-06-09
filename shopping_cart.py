@@ -72,13 +72,17 @@ print("212-807-7771")
 print("77 Seventh Avenue, New York, NY 10001")
 
 print("\n")
+print("*************************")
 
 from datetime import datetime
 now = datetime.now()
-dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
-print("Checkout At:", dt_string)
+dt_string = now.strftime("%a %m/%d/%Y %I:%M:%S %p")
+print("\033[1m" + "Checkout At:", dt_string + "\033[0m")
+
 
 print("\n")
+print("*************************")
+
 print("Selected Products:")
 for selected_id in selected_ids:
     #print(selected_id)
@@ -100,7 +104,7 @@ sales_tax = 0.0875 * total_price
 print("Taxes:", to_usd(sales_tax))
 
 final_total = total_price + sales_tax
-print("Total:", to_usd(final_total))
+print("TOTAL:", to_usd(final_total))
 
 #print total amount
 
@@ -108,3 +112,4 @@ print("\n")
 print("*************************")
 print("Returns are accepted within 14 days with receipt.")
 print("Thank you for shopping at West Side Market!")
+print("\n")
