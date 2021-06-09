@@ -75,7 +75,7 @@ print("\n")
 
 from datetime import datetime
 now = datetime.now()
-dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
 print("Checkout At:", dt_string)
 
 print("\n")
@@ -90,10 +90,19 @@ for selected_id in selected_ids:
     print("*", matching_product["name"], to_usd(matching_product["price"]))
 
 #print subtotal
+#subtotal = str(total_price)
 
-print("Subtotal: " + str(total_price))
+print("Subtotal: " + to_usd(total_price))
 
+subtotal = to_usd(total_price)
 #print tax owed (append to subtotal *.0875)
+
+sales_tax = 0.0875 * total_price
+print("Taxes:", to_usd(sales_tax))
+
+#for n in total_price:
+ #  taxes.append(n * 0.0875)
+#print("Taxes: ", to_usd(taxes))
 
 
 #tax_owed = []
