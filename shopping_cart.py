@@ -23,7 +23,6 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-
 def to_usd(my_price):
     """
     Converts a numeric value to usd-formatted string, for printing and display purposes.
@@ -47,14 +46,15 @@ def to_usd(my_price):
 total_price = 0
 
 selected_ids = []
+
 while True:
     selected_id = input("Please select / scan a valid product id 1-20 or select DONE: ")
     if selected_id.upper() == "DONE":
         break
-    elif selected_id.upper() > "20":
-        print("Invalid product id. Please select again.")
-    else:
+    elif (selected_id == "1") or (selected_id == "2") or (selected_id == "3") or (selected_id == "4") or (selected_id == "5") or (selected_id == "6") or (selected_id == "7") or (selected_id == "8") or (selected_id == "9") or (selected_id == "10") or (selected_id == "11") or (selected_id == "12") or (selected_id == "13") or (selected_id == "14") or (selected_id == "15") or (selected_id == "16") or (selected_id == "17") or (selected_id == "18") or (selected_id == "19") or (selected_id == "20"):
         selected_ids.append(selected_id)
+    else:
+        print("Invalid product id. Please scan again.")
     #print(selected_id)
 #print("WE HAVE REACHED THE END OF THE LOOP")
 #print(selected_ids)
@@ -95,19 +95,12 @@ for selected_id in selected_ids:
 print("Subtotal: " + to_usd(total_price))
 
 subtotal = to_usd(total_price)
-#print tax owed (append to subtotal *.0875)
 
 sales_tax = 0.0875 * total_price
 print("Taxes:", to_usd(sales_tax))
 
-#for n in total_price:
- #  taxes.append(n * 0.0875)
-#print("Taxes: ", to_usd(taxes))
-
-
-#tax_owed = []
-#for n in subtotal:
- # tax_owed.append(n * 0.0875)
+final_total = total_price + sales_tax
+print("Total:", to_usd(final_total))
 
 #print total amount
 
