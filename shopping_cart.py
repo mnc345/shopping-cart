@@ -23,6 +23,16 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+#Bonus tax rate
+TAX_RATE = os.getenv("TAX_RATE")
+
 def to_usd(my_price):
     """
     Converts a numeric value to usd-formatted string, for printing and display purposes.
@@ -42,6 +52,7 @@ def to_usd(my_price):
 
 #1)capture product ids until we're done
 #use infinite loop (while loop)
+
 
 total_price = 0
 
@@ -69,7 +80,7 @@ while True:
 #2)perform product lookups to determine what the products name and price are
 
 print("\n")
-print("*************************")
+print("-------------------------")
 
 print("West Side Market")
 print("https://www.wmarketnyc.com/")
@@ -77,7 +88,7 @@ print("212-807-7771")
 print("77 Seventh Avenue, New York, NY 10001")
 
 print("\n")
-print("*************************")
+print("-------------------------")
 
 from datetime import datetime
 now = datetime.now()
@@ -86,7 +97,7 @@ print("\033[1m" + "Checkout At:", dt_string + "\033[0m")
 
 
 print("\n")
-print("*************************")
+print("-------------------------")
 
 print("Selected Products:")
 for selected_id in selected_ids:
@@ -96,7 +107,7 @@ for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
     total_price = total_price + matching_product["price"]
-    print("*", matching_product["name"], to_usd(matching_product["price"]))
+    print("*", matching_product["name"], "-", to_usd(matching_product["price"]))
 
 #print subtotal
 #subtotal = str(total_price)
@@ -105,7 +116,7 @@ print("Subtotal: " + to_usd(total_price))
 
 subtotal = to_usd(total_price)
 
-sales_tax = 0.0875 * total_price
+sales_tax = float(TAX_RATE) * total_price
 print("Taxes:", to_usd(sales_tax))
 
 final_total = total_price + sales_tax
@@ -114,7 +125,7 @@ print("TOTAL:", to_usd(final_total))
 #print total amount
 
 print("\n")
-print("*************************")
+print("-------------------------")
 print("Thank you for shopping at West Side Market!")
 
 print("Returns are accepted within 14 days of purchase with receipt.")
