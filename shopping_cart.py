@@ -45,21 +45,26 @@ def to_usd(my_price):
 
 total_price = 0
 
+valid_selections = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
+
 selected_ids = []
 
 while True:
     selected_id = input("Please select / scan a valid product id 1-20 or select DONE: ")
     if selected_id.upper() == "DONE":
         break
-    elif (selected_id == "1") or (selected_id == "2") or (selected_id == "3") or (selected_id == "4") or (selected_id == "5") or (selected_id == "6") or (selected_id == "7") or (selected_id == "8") or (selected_id == "9") or (selected_id == "10") or (selected_id == "11") or (selected_id == "12") or (selected_id == "13") or (selected_id == "14") or (selected_id == "15") or (selected_id == "16") or (selected_id == "17") or (selected_id == "18") or (selected_id == "19") or (selected_id == "20"):
-        selected_ids.append(selected_id)
+    if selected_id not in valid_selections:
+            print("Invalid product id. Please scan again.")
+            continue
     else:
-        print("Invalid product id. Please scan again.")
-    #print(selected_id)
-#print("WE HAVE REACHED THE END OF THE LOOP")
-#print(selected_ids)
+        selected_ids.append(selected_id)
 
-#print("WE HAVE REACHED THE END OF THE LOOP")
+    #elif (selected_id == "1") or (selected_id == "2") or (selected_id == "3") or (selected_id == "4") or (selected_id == "5") or (selected_id == "6") or (selected_id == "7") or (selected_id == "8") or (selected_id == "9") or (selected_id == "10") or (selected_id == "11") or (selected_id == "12") or (selected_id == "13") or (selected_id == "14") or (selected_id == "15") or (selected_id == "16") or (selected_id == "17") or (selected_id == "18") or (selected_id == "19") or (selected_id == "20"):
+     #   selected_ids.append(selected_id)
+    #else:
+     #   print("Invalid product id. Please scan again.")
+    #print(selected_id)
+
 
 #2)perform product lookups to determine what the products name and price are
 
@@ -110,6 +115,7 @@ print("TOTAL:", to_usd(final_total))
 
 print("\n")
 print("*************************")
-print("Returns are accepted within 14 days with receipt.")
 print("Thank you for shopping at West Side Market!")
+
+print("Returns are accepted within 14 days of purchase with receipt.")
 print("\n")
