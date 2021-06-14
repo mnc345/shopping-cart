@@ -30,8 +30,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-#Bonus tax rate
-TAX_RATE = os.getenv("TAX_RATE")
+#Bonus tax rate -- default NYC tax rate
+TAX_RATE = os.getenv("TAX_RATE", default=0.0875)
 
 def to_usd(my_price):
     """
@@ -44,14 +44,6 @@ def to_usd(my_price):
     Returns: $4,000.44
     """
     return f"${my_price:,.2f}" #> $12,000.71
-
-
-# TODO: write some Python code here to produce the desired output
-
-#print(products)
-
-#1)capture product ids until we're done
-#use infinite loop (while loop)
 
 
 total_price = 0
@@ -70,14 +62,14 @@ while True:
     else:
         selected_ids.append(selected_id)
 
+  
+ #longer form code previously used before discussing in office hours 
     #elif (selected_id == "1") or (selected_id == "2") or (selected_id == "3") or (selected_id == "4") or (selected_id == "5") or (selected_id == "6") or (selected_id == "7") or (selected_id == "8") or (selected_id == "9") or (selected_id == "10") or (selected_id == "11") or (selected_id == "12") or (selected_id == "13") or (selected_id == "14") or (selected_id == "15") or (selected_id == "16") or (selected_id == "17") or (selected_id == "18") or (selected_id == "19") or (selected_id == "20"):
      #   selected_ids.append(selected_id)
     #else:
      #   print("Invalid product id. Please scan again.")
     #print(selected_id)
 
-
-#2)perform product lookups to determine what the products name and price are
 
 print("\n")
 print("-------------------------")
@@ -93,7 +85,7 @@ print("-------------------------")
 from datetime import datetime
 now = datetime.now()
 dt_string = now.strftime("%a %m/%d/%Y %I:%M:%S %p")
-print("\033[1m" + "Checkout At:", dt_string + "\033[0m")
+print("Checkout At:", dt_string)
 
 
 print("\n")
@@ -101,9 +93,6 @@ print("-------------------------")
 
 print("Selected Products:")
 for selected_id in selected_ids:
-    #print(selected_id)
-    # lookup the corresponding product!
-    # or maybe display the selected product's name and price
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
     total_price = total_price + matching_product["price"]
@@ -111,6 +100,8 @@ for selected_id in selected_ids:
 
 #print subtotal
 #subtotal = str(total_price)
+
+print("Total number of products purchased:", len(selected_ids))
 
 print("Subtotal: " + to_usd(total_price))
 
@@ -120,7 +111,8 @@ sales_tax = float(TAX_RATE) * total_price
 print("Taxes:", to_usd(sales_tax))
 
 final_total = total_price + sales_tax
-print("TOTAL:", to_usd(final_total))
+print("\033[1m" + "TOTAL:", to_usd(final_total) + "\033[0m")
+
 
 #print total amount
 
